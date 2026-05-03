@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeStays - AI Powered Hotel Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="background-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass-panel">
+        <div class="logo">
+            <i data-lucide="hotel" class="logo-icon"></i> LuxeStays
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Destinations</a>
+            <a href="#">Bookings</a>
+            <div id="authContainer">
+                <button id="navSignInBtn" class="btn-primary btn-small">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Discover your next <span>extraordinary</span> stay.</h1>
+            <p>Experience the future of travel with our AI voice assistant. Just speak, and we'll find the perfect place.</p>
+            
+            <div class="search-bar glass-panel">
+                <div class="input-group">
+                    <i data-lucide="map-pin"></i>
+                    <input type="text" id="locationInput" placeholder="Where to? (e.g. Delhi)">
+                </div>
+                <div class="input-group">
+                    <i data-lucide="wallet"></i>
+                    <select id="priceInput">
+                        <option value="">Any Price</option>
+                        <option value="cheap">Budget (Under ₹3000)</option>
+                        <option value="medium">Standard (₹3000 - ₹10000)</option>
+                        <option value="high">Luxury (Above ₹10000)</option>
+                    </select>
+                </div>
+                <button class="btn-primary" id="searchBtn">
+                    <i data-lucide="search"></i> Search
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Output Message -->
+        <div id="aiMessage" class="ai-message hidden">
+            <i data-lucide="sparkles"></i> <span></span>
+        </div>
+
+        <!-- Hotel Grid -->
+        <section class="hotel-section">
+            <h2 id="resultsHeading">Recommended For You</h2>
+            <div id="hotelGrid" class="hotel-grid">
+                <!-- Hotel cards will be injected here via JS -->
+                <div class="loading-spinner"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating AI Assistant -->
+    <div class="ai-assistant-widget glass-panel" id="assistantWidget">
+        <div class="avatar-container" id="avatarContainer">
+            <!-- Two images: idle and talking -->
+            <img src="idle.png" alt="AI Avatar Idle" id="avatarIdle" class="avatar-img active">
+            <img src="talking.png" alt="AI Avatar Talking" id="avatarTalking" class="avatar-img hidden">
+            <div class="status-indicator"></div>
+        </div>
+        
+        <div class="assistant-controls">
+            <button id="micBtn" class="mic-btn" title="Click to speak">
+                <i data-lucide="mic"></i>
+            </button>
+            <div class="listening-waves hidden" id="listeningWaves">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden glass-panel">
+        <i data-lucide="check-circle" class="toast-icon"></i>
+        <span id="toastMsg">Booking confirmed!</span>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <button id="closeAuthBtn" class="close-btn"><i data-lucide="x"></i></button>
+            <h2 id="authTitle">Sign In</h2>
+            <div id="authError" class="auth-error hidden"></div>
+            <form id="authForm">
+                <div class="input-group">
+                    <i data-lucide="user"></i>
+                    <input type="text" id="usernameInput" placeholder="Username" required>
+                </div>
+                <div class="input-group">
+                    <i data-lucide="lock"></i>
+                    <input type="password" id="passwordInput" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary w-100" id="authSubmitBtn">Sign In</button>
+            </form>
+            <p class="auth-switch">
+                <span id="authSwitchText">Don't have an account?</span> 
+                <a href="#" id="authSwitchLink">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
